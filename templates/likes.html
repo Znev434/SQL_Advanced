@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Polubienia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Polubienia</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Dodaj polubienie</h2>
+        <form method="POST">
+            <label>ID użytkownika: <input type="number" name="user_id" required></label><br>
+            <label>ID posta: <input type="number" name="post_id" required></label><br>
+            <button type="submit">Dodaj</button>
+        </form>
+        <h2>Lista polubień</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Autor</th>
+                <th>Post</th>
+                <th>Data</th>
+            </tr>
+            {% for like in likes %}
+            <tr>
+                <td>{{ like['id'] }}</td>
+                <td>{{ like['username'] }}</td>
+                <td>{{ like['content'] }}</td>
+                <td>{{ like['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

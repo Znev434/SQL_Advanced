@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Użytkownicy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Użytkownicy</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Dodaj użytkownika</h2>
+        <form method="POST">
+            <label>Nazwa użytkownika: <input type="text" name="username" required></label><br>
+            <label>Email: <input type="email" name="email" required></label><br>
+            <button type="submit">Dodaj</button>
+        </form>
+        <h2>Lista użytkowników</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nazwa użytkownika</th>
+                <th>Email</th>
+                <th>Data utworzenia</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user['id'] }}</td>
+                <td>{{ user['username'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>{{ user['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zarządzanie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Zarządzanie bazą danych</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Operacje na bazie</h2>
+        <form method="POST">
+            <button type="submit" name="action" value="delete_inactive_users">Usuń nieaktywnych użytkowników</button><br>
+            <button type="submit" name="action" value="delete_old_posts">Usuń stare posty</button><br>
+            <button type="submit" name="action" value="delete_orphan_comments">Usuń osierocone komentarze</button><br>
+            <button type="submit" name="action" value="delete_orphan_likes">Usuń osierocone polubienia</button><br>
+            <button type="submit" name="action" value="optimize_database">Optymalizuj bazę</button><br>
+            <button type="submit" name="action" value="export_users">Eksportuj użytkowników</button><br>
+            <button type="submit" name="action" value="export_posts">Eksportuj posty</button><br>
+            <button type="submit" name="action" value="export_comments">Eksportuj komentarze</button><br>
+            <button type="submit" name="action" value="export_likes">Eksportuj polubienia</button><br>
+            <button type="submit" name="action" value="export_logs">Eksportuj logi</button>
+        </form>
+    </main>
+</body>
+</html>

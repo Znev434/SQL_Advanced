@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Analityka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Analityka</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Liczba postów użytkowników</h2>
+        <table>
+            <tr><th>Użytkownik</th><th>Liczba postów</th></tr>
+            {% for row in user_post_counts %}
+            <tr><td>{{ row['username'] }}</td><td>{{ row['post_count'] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Posty z największą liczbą komentarzy</h2>
+        <table>
+            <tr><th>ID</th><th>Treść</th><th>Autor</th><th>Liczba komentarzy</th></tr>
+            {% for row in most_commented_posts %}
+            <tr><td>{{ row['id'] }}</td><td>{{ row['content'] }}</td><td>{{ row['username'] }}</td><td>{{ row['comment_count'] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Najaktywniejsi lajkujący</h2>
+        <table>
+            <tr><th>Użytkownik</th><th>Liczba polubień</th></tr>
+            {% for row in top_likers %}
+            <tr><td>{{ row['username'] }}</td><td>{{ row['like_count'] }}</td></tr>
+            {% endfor %}
+        </table>
+
+        <h2>Logi operacji</h2>
+        <table>
+            <tr><th>ID</th><th>Zdarzenie</th><th>Szczegóły</th><th>Data</th></tr>
+            {% for log in logs %}
+            <tr><td>{{ log['id'] }}</td><td>{{ log['event'] }}</td><td>{{ log['details'] }}</td><td>{{ log['created_at'] }}</td></tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

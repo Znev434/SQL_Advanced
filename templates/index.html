@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Platforma Społecznościowa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Platforma Społecznościowa</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Witaj na platformie!</h2>
+        <p>Wybierz sekcję z menu powyżej, aby zobaczyć lub dodać dane.</p>
+    </main>
+</body>
+</html>

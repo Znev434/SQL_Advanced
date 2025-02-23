@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Posty</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Posty</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Dodaj post</h2>
+        <form method="POST">
+            <label>ID użytkownika: <input type="number" name="user_id" required></label><br>
+            <label>Treść: <textarea name="content" required></textarea></label><br>
+            <button type="submit">Dodaj</button>
+        </form>
+        <h2>Lista postów</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Autor</th>
+                <th>Treść</th>
+                <th>Data</th>
+            </tr>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post['id'] }}</td>
+                <td>{{ post['username'] }}</td>
+                <td>{{ post['content'] }}</td>
+                <td>{{ post['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

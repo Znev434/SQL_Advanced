@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Komentarze</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Komentarze</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Strona główna</a> |
+            <a href="{{ url_for('users') }}">Użytkownicy</a> |
+            <a href="{{ url_for('posts') }}">Posty</a> |
+            <a href="{{ url_for('comments') }}">Komentarze</a> |
+            <a href="{{ url_for('likes') }}">Polubienia</a> |
+            <a href="{{ url_for('analytics') }}">Analityka</a> |
+            <a href="{{ url_for('management') }}">Zarządzanie</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Dodaj komentarz</h2>
+        <form method="POST">
+            <label>ID użytkownika: <input type="number" name="user_id" required></label><br>
+            <label>ID posta: <input type="number" name="post_id" required></label><br>
+            <label>Treść: <textarea name="content" required></textarea></label><br>
+            <button type="submit">Dodaj</button>
+        </form>
+        <h2>Lista komentarzy</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Autor</th>
+                <th>Post</th>
+                <th>Treść</th>
+                <th>Data</th>
+            </tr>
+            {% for comment in comments %}
+            <tr>
+                <td>{{ comment['id'] }}</td>
+                <td>{{ comment['username'] }}</td>
+                <td>{{ comment['post_content'] }}</td>
+                <td>{{ comment['content'] }}</td>
+                <td>{{ comment['created_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>
